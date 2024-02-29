@@ -1,0 +1,36 @@
+.Login{
+    width: 40%;
+    display: flexbox;
+    top: 15%;
+    left: 31.5%;
+    /* border: solid 2px black; */
+    display: flexbox;
+    position: absolute;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    border-radius: 6px;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+    background-color: #a65dda;
+    transition: transform 0.3s ease;
+}
+.Login:hover{
+    transform: scale(1.05);
+}
+
+.btn {
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+}
+
+.textbox{
+    margin: 2%;
+    padding: 5px;
+}
+.welcome{
+    background-color: rgb(225, 195, 44);
+}
+
+.welcometext{
+    color: rgb(255, 255, 255);
+}
