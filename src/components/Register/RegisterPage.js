@@ -2,25 +2,41 @@ import "./RegisterPage.css";
 import {useForm} from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import {useNavigate} from "react-router-dom";
+import { useState } from "react";
 const RegisterPage = () => {
 
     const schema = Yup.object().shape({
     NAME: Yup.string().required(),
     MIDDLENAME: Yup.string().required(),
     LASTNAME: Yup.string().required(),
-    ID: Yup.number().required().positive().integer(),
-    EMAIL: Yup.string().email().required(),
+    ID: Yup.number().required().positive().integer().max(99999999999,"Must be exactly 11 digits").min(10000000000,"Must be exactly 11 digits"),
+    EMAIL: Yup.string().email().required().matches(/@somaiya\.edu$/,"Must end with @Somaiya.edu"),
     PASSWORD: Yup.string().required().min(8).max(12),
     CONFIRMPASSWORD: Yup.string().oneOf([Yup.ref("PASSWORD"), null]).required(),
     })
 
-const {register, handleSubmit, formState: {errors}} = useForm({
+const {register, handleSubmit, formState: {errors}, reset} = useForm({
     resolver:yupResolver(schema)
 })
 const onSubmit = (data) => {
     console.log(data)
-    console.log("Registered Succesfully")
+    alert("Registered Succesfully");
+    reset();
+}
+const navigate = useNavigate();
+
+const navigateToLoginPage = () => {
+  navigate("");
+}
+const [selectedOption, setSelectedOption] = useState("");
+const [selectedStream , setSelectedStream] = useState("");
+
+const handleChange = (event) => {
+  setSelectedOption(event.target.value);
+}
+const handleStream = (event) => {
+    setSelectedStream(event.target.value);
 }
     return(
     <div className="Login">
@@ -79,6 +95,26 @@ const onSubmit = (data) => {
             />
             {errors.EMAIL && <p>{errors.EMAIL.message}</p>}
           </div>
+          <div className="div">
+          <label htmlFor="dropdown">Select Your Year: </label>
+      <select id="dropdown" value={selectedOption} onChange={handleChange} {...register("YEAR")}>
+        <option value="FY">FY</option>
+        <option value="SY">SY</option>
+        <option value="TY">TY</option>
+      </select>
+          </div>
+          <div className="div">
+            <label htmlFor="dropdown2">Select Your Stream: </label>
+            <select id="dropdown2" value={selectedStream} onChange={handleStream} {...register("STREAM")} >
+              <option value="IT">IT</option>
+              <option value="IT Hons">IT Hons</option>
+              <option value="CS">CS</option>
+              <option value="CS Hons">CS Hons</option>
+              <option value="BBA">BBA</option>
+              <option value="BBA Hons">BBA Hons</option>
+              <option value="BCA">BCA</option>
+            </select>
+          </div>
           <div>
             <input
               type="password"
@@ -105,7 +141,7 @@ const onSubmit = (data) => {
         </form>
       </div>
       <div>
-        <button className="btn">Register</button>
+        <button onClick = {navigateToLoginPage} className="btn">Login</button>
       </div>
     </div>
 

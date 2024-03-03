@@ -45,3 +45,7 @@
 .welcometext{
     color: rgb(255, 255, 255);
 }
+p{
+    color: rgb(181, 18, 18);
+    font-weight: bold;
+}

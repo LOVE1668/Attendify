@@ -1,0 +1,10 @@
+.days{
+    left: 6%;
+    border: solid 2px black;
+    margin: 1%;
+    width: 8%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,13 @@
+.btn-container{
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    margin: 3%;
+    width: 10%;
+    height: 5%;
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
