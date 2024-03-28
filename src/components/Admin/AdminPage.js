@@ -1,8 +1,10 @@
 import logo from "./attendify-high-resolution-logo-black.png"
 import { useNavigate } from "react-router-dom"
-import "./AdminPage.css"
+import "./AdminPage.css";
 const AdminPage = () => {
+
     const navigate = useNavigate();
+
     const toTimeTablePage = () => {
         navigate("./TimeTablePage");
     }

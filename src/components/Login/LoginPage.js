@@ -1,14 +1,20 @@
 import "./LoginPage.css";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-// import { useState } from "react";
+import { useState , useEffect } from "react";
+import {db} from "../../config/firebase";
 import * as Yup from "yup";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ref } from "firebase/database";
 
 const LoginPage = () => {
-//   const [id, setId] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    ID: "",
+    EMAIL: "",
+    PASSWORD: ""
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const [registeredUser, setRegisteredUser] = useState([]);
 
   const schema = Yup.object().shape({
     ID: Yup.number().required().positive().integer().max(99999999999,"Must be exactly 11 digits").min(10000000000, "Must be exactly 11 digits"),
@@ -16,30 +22,62 @@ const LoginPage = () => {
     PASSWORD: Yup.string().required().min(8).max(12),
   });
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-//   const getId = (event) => {
-//     setId(event.target.value);
-//   };
-
-//   const getEmail = (event) => {
-//     setEmail(event.target.value);
-//   };
-
-//   const getPassword = (event) => {
-//     setPassword(event.target.value);
-//   };
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
   };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    schema.validate(formData, { abortEarly: false })
+      .then(() => {
+        console.log(formData);
+        // Simulate login process - replace this with actual authentication logic
+        // Redirect user to dashboard based on role
+        const userExists = registeredUser.find(user=> user.ID === formData.ID && user.EMAIL === formData.EMAIL && user.PASSWORD === formData.PASSWORD)
+        if(userExists){
+          console.log("User Exists");
+          // navigate("/dashboard");
+        }else{
+          setErrors({message: "User not found!, Register First!."})
+        }
+        
+      })
+      .catch((err) => {
+        const validationErrors = {};
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      });
+  };
+
   const navigate = useNavigate();
   
   const navigateToRegisterPage = () => {
     navigate("./RegisterPage");
   }
+
+  useEffect(() => {
+    const userRef = db.collection("users");
+    userRef.on("value", (snapshot) => {
+      const users = snapshot.val();
+      if(users){
+        const usersArray = Object.key(users).map(key => ({
+          ID:users[key].ID,
+          EMAIL:users[key].EMAIL,
+          PASSWORD:users[key].PASSWORD,
+        }))
+        setRegisteredUser(usersArray);
+      }
+    })
+    return () => {
+      userRef.off("value");
+    }
+  }, [])
 
   return (
     <div className="Login">
@@ -50,36 +88,39 @@ const LoginPage = () => {
         <div className="studentlogin">
           <h2 className="welcometext">Student Login</h2>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <div>
             <input
               type="number"
-            //   onChange={(event) => getId(event)}
               className="textbox"
               placeholder="Enter Your ID no.:"
-              {...register("ID")}
+              name="ID"
+              value={formData.ID}
+              onChange={handleChange}
             />
-            {errors.ID && <p>{errors.ID.message}</p>}
+            {errors.ID && <p>{errors.ID}</p>}
           </div>
           <div>
             <input
               type="email"
-            //   onChange={(event) => getEmail(event)}
               className="textbox"
               placeholder="Enter Your Email.:"
-              {...register("EMAIL")}
+              name="EMAIL"
+              value={formData.EMAIL}
+              onChange={handleChange}
             />
-            {errors.EMAIL && <p>{errors.EMAIL.message}</p>}
+            {errors.EMAIL && <p>{errors.EMAIL}</p>}
           </div>
           <div>
             <input
               type="password"
-            //   onChange={(event) => getPassword(event)}
               className="textbox"
               placeholder="Enter Your Password.:"
-              {...register("PASSWORD")}
+              name="PASSWORD"
+              value={formData.PASSWORD}
+              onChange={handleChange}
             />
-            {errors.PASSWORD && <p>{errors.PASSWORD.message}</p>}
+            {errors.PASSWORD && <p>{errors.PASSWORD}</p>}
           </div>
           <div>
             <input className="btn" type="submit" value="Login" />

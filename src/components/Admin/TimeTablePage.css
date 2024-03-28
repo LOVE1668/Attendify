@@ -8,3 +8,15 @@
     display: flex;
     justify-content: center;
 }
+.display{
+    display: flex;
+    margin-left: 3%;
+}
+
+.input{
+    height: 6%;
+    width: 5.8%;
+    margin-top:1.5%;
+    margin-left: 1%;
+    justify-content: center;
+}
