@@ -3,7 +3,7 @@ import { useState , useEffect } from "react";
 import {db} from "../../config/firebase";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import { ref } from "firebase/database";
+import { ref , onValue} from "firebase/database";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +15,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
 
   const [registeredUser, setRegisteredUser] = useState([]);
+  const [registeredStaff, setRegisteredStaff] = useState([]);
 
   const schema = Yup.object().shape({
     ID: Yup.number().required().positive().integer().max(99999999999,"Must be exactly 11 digits").min(10000000000, "Must be exactly 11 digits"),
@@ -38,11 +39,34 @@ const LoginPage = () => {
         // Simulate login process - replace this with actual authentication logic
         // Redirect user to dashboard based on role
         const userExists = registeredUser.find(user=> user.ID === formData.ID && user.EMAIL === formData.EMAIL && user.PASSWORD === formData.PASSWORD)
+        const staffExists = registeredStaff.find(staffs => staffs.ID === formData.ID && staffs.EMAIL === formData.EMAIL && staffs.PASSWORD === formData.PASSWORD)
         if(userExists){
           console.log("User Exists");
-          // navigate("/dashboard");
-        }else{
-          setErrors({message: "User not found!, Register First!."})
+          if(formData.ID === "31010921000" ){
+
+            navigate("/admin")
+
+          }
+          else{
+            navigate("/student")
+          }
+          
+        }
+        else if (staffExists){ 
+          if(formData.ID === "31010920001"){
+            // navigate("/staff") 
+            window.location.href = "http://localhost:3000/staff";  
+          }
+          else{
+            alert("User not found!, Register First!.")
+          // navigate("./Register");
+          }
+                
+        }
+        else{
+          // setErrors({message: "User not found!, Register First!."})
+          alert("User not found!, Register First!.")
+          // navigate("./Register");
         }
         
       })
@@ -58,26 +82,47 @@ const LoginPage = () => {
   const navigate = useNavigate();
   
   const navigateToRegisterPage = () => {
-    navigate("./RegisterPage");
+    navigate("./register");
   }
 
   useEffect(() => {
-    const userRef = db.collection("users");
-    userRef.on("value", (snapshot) => {
+    const usersRef = ref(db, 'users');
+    const staffRef = ref(db, 'staff');
+    onValue(usersRef, (snapshot) => {
       const users = snapshot.val();
       if(users){
-        const usersArray = Object.key(users).map(key => ({
+        const usersArray = Object.keys(users).map(key => ({
           ID:users[key].ID,
           EMAIL:users[key].EMAIL,
           PASSWORD:users[key].PASSWORD,
         }))
         setRegisteredUser(usersArray);
+        console.log(setRegisteredStaff)
       }
     })
-    return () => {
-      userRef.off("value");
-    }
-  }, [])
+    onValue(staffRef, (snap) => {
+      const staff = snap.val();
+      if(staff){
+        const staffArray = Object.keys(staff).map(key => ({
+          ID:staff[key].ID,
+          EMAIL:staff[key].EMAIL,
+          PASSWORD:staff[key].PASSWORD,
+        }))
+        setRegisteredStaff(staffArray);
+      }
+    })
+    
+
+  //     const userData = snapshot.val();
+  //     if (userData) {
+  //       const usersArray = Object.values(userData);
+  //       setRegisteredUser(usersArray);
+  //       console.log(user)
+  //     }
+  //   });
+  // 
+}
+  , [])
 
   return (
     <div className="Login">
@@ -123,12 +168,12 @@ const LoginPage = () => {
             {errors.PASSWORD && <p>{errors.PASSWORD}</p>}
           </div>
           <div>
-            <input className="btn" type="submit" value="Login" />
+            <input className="button" type="submit" value="Login" />
           </div>
         </form>
       </div>
       <div>
-        <button onClick={navigateToRegisterPage} className="btn">Register</button>
+        <button onClick={navigateToRegisterPage} className="button">Register</button>
       </div>
     </div>
   );

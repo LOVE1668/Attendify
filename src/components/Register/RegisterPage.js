@@ -37,7 +37,7 @@ const RegisterPage = () => {
     const navigate = useNavigate();
 
     const navigateToLoginPage = () => {
-        navigate("");
+        navigate("/");
     };
 
     const handleChange = (event) => {
@@ -52,7 +52,7 @@ const RegisterPage = () => {
           await schema.validate(formData, { abortEarly: false });
           await pushDataToFirebase(formData);
           alert("Registered Successfully");
-          navigate(""); // Redirect to login page or any other page
+          navigate("/"); // Redirect to login page or any other page
         } catch (error) {
           console.error("Validation Error:", error);
           const validationErrors = {};
@@ -208,7 +208,7 @@ const RegisterPage = () => {
                 </div>
                 <div>
                     <input
-                        className="btn"
+                        className="button"
                         type="submit"
                         value="Register"
                         id="submit"
@@ -216,7 +216,7 @@ const RegisterPage = () => {
                 </div>
             </form>
             <div>
-                <button onClick={navigateToLoginPage} className="btn">Login</button>
+                <button onClick={navigateToLoginPage} className="button">Login</button>
             </div>
         </div>
     );

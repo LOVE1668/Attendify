@@ -4,7 +4,11 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
-// import AdminPage from './components/Admin/AdminPage';
+import AdminPage from './components/Admin/AdminPage';
+import StudentPage from './components/Student/StudentPage';
+import StaffCred from './components/Admin/StaffCred';
+import StaffPage from './components/Faculty/StaffPage';
+import AttendancePage from './components/Faculty/AttendancePage';
 // import TimeTablePage from './components/Admin/TimeTablePage';
 
 function App() {
@@ -13,8 +17,13 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" Component={LoginPage} />
-          <Route path="*" Component={RegisterPage}/>
-          {/* <Route path ="/" Component={AdminPage}/> */}
+          <Route path="/register" Component={RegisterPage}/>
+          <Route path ="/admin" Component={AdminPage}/>
+          <Route path ="/staffcred" Component={StaffCred}/> 
+          <Route path ="/student" Component={StudentPage}/>
+          <Route path ="/staff" Component={StaffPage}/>
+          <Route path ="/attendance" Component={AttendancePage}/>
+          
           {/* <Route path ="/TimeTablePage" Component={TimeTablePage}/> */}
           </Routes>
       </div>
