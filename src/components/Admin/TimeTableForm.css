@@ -1,0 +1,81 @@
+/* FormComponent.css */
+
+.form-container {
+    width: 50%;
+    margin-top: 8%;
+    margin-left: 23%;
+    padding: 20px;
+    /* border: 2px solid #ccc; */
+    border-radius: 5px;
+    background-color: #4d3a56;
+    color: white;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-container label {
+    display: inline-block; /* Display labels inline */
+    margin-bottom: 5px;
+    width: 40%; /* Adjust label width as needed */
+    font-weight: bold;
+}
+
+.form-container input[type="number"],
+.form-container input[type="text"],
+.form-container select {
+    width: 45%; /* Adjust input/select width as needed */
+    padding: 8px; /* Reduce padding */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block; /* Display input/select inline */
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-container select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff; /* Set background color */
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding-right: 30px; /* Add padding for arrow */
+}
+
+.form-container input[type="number"]:focus,
+.form-container input[type="text"]:focus,
+.form-container select:focus {
+    outline: none;
+    border-color: #9f26b2;
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9f26b2;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: block; /* Ensure button takes up full width */
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #7a1e97;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.subject-row {
+    display: flex;
+    justify-content: center;
+    margin-left: 40%;
+  }
+  
+  .subject-field {
+    padding: 0%;
+    width: 100%;
+  }
+

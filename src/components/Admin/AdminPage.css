@@ -1,13 +1,15 @@
 .btn-container{
     display: flex;
     position: absolute;
-    width: 97%;
+    width: 90%;
+    margin: 2.5%;
     border-radius: 5px;
     justify-content: center;
-    background-color: #a65dda;
+    background-color: #4d3a56;
     align-items: center;
     flex-direction: column;
-    padding: 1%;
+    padding: 2%;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
 
 }
 .btn{
@@ -21,9 +23,21 @@
     border-radius: 5px;
     flex-direction: column;
     font-weight: bolder;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover{
+    background: rgb(50, 5, 56);
+    border: solid 2px white;
 }
 
 .wlc{
+    color: white;
     font-weight:bolder;
     font-size: 30px;
+}
+
+.img{
+    margin-top: 3%;
+    margin-left: 1%;
 }

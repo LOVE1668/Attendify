@@ -1,62 +1,99 @@
-*body{
-
-    background-color: seagreen;
+body {
+    background-color: #27172d; /* #110b0a - body color */
 }
-.Login{
-    width: 30%;
-    display: flexbox;
-    top: 3%;
-    left:35%;
+.cont {
+    height: 100%;
+    width: 100%;
+    padding: 20px; /* Add margin above the .Login element */
+     /* Add margin below the .Login element */
+    /* Add any other styling for the container */
+}
 
-    /* border: solid 2px black; */
-    display: flexbox;
+.Login {
+    width: 30%;
+    top: 10%; /* Adjust the top position as needed */
+    left: 35%;
     position: absolute;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    border: 2px solid rgb(224, 3, 248);
+    padding-top: 5%; /* Increase the padding top */
+    padding-bottom: 2%; /* Increase the padding bottom */
+    margin-bottom: 20px; /* Add margin at the bottom */
     border-radius: 6px;
     box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
-    background-color: #a65dda;
+    background-color: #4d3a56; /* #9f26b2 - button color */
     transition: transform 0.3s ease;
 }
-.Login:hover{
-    transform: scale(1.05);
-    border: solid 1px white;
+
+
+
+.Login:hover {
+    transform: scale(1.02);
+    border: 2px solid rgb(224, 3, 248) ;
 }
 
-.button{
-    background-color: white;
+.button {
+    background: #8b3199; /* #30203a - accent color */
     padding: 10px;
+    width: 25%;
     margin-top: 7%;
     margin-left: 1%;
     margin-right: 1%;
-
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid rgb(50, 5, 56);
 }
-
-.textbox{
+.button:hover{
+    background: rgb(103, 8, 113);
+    border: solid 2px white;
+}
+.textbox {
     margin: 3%;
     padding: 10px;
     width: 60%;
     border-radius: 5px;
+    background-color: white; /* #27172d - input field color */
+    color: black; /* #786e7e - placeholder color */
+    border: solid 2px rgb(224, 3, 248);
+    font-weight: bolder;
 }
-.welcome{
-    background-color: rgb(225, 195, 44);
+
+.welcome {
+    background-color: #4d3a56; /* rgb(225, 195, 44) - container colors */
     margin: 5%;
+    color: white;
 }
 
-.welcometext{
-    color: rgb(255, 255, 255);
+.welcometext {
+    background-color: #4d3a56;
+    color: rgb(255, 255, 255); /* rgb(255, 255, 255) - white color */
 }
 
-p{
-    color: rgb(181, 18, 18);
+p {
+    color: white; /* rgb(181, 18, 18) - red color */
     font-weight: bold;
 }
-.div{
-    background-color: white;
+
+.div {
+    background-color: white;    
     margin-left: 18%;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    text-align: left;
+    border: 2px solid rgb(224, 3, 248) ;
     width: 61%;
     padding: 1.5%;
     border-radius: 5px;
+    
+    
 }
+.input{
+    color:#747597;
+    font-weight: bold;
+}
+select#dropdown2.input{
+ width: 100%; 
+}
+select#dropdown.input{
+    width: 100%; 
+   }

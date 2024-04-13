@@ -4,6 +4,7 @@ import * as Yup from "yup"; // Library for validation of input fields
 import { useNavigate } from "react-router-dom";//library to help navigate between components/pages
 import { db } from "../../config/firebase";
 import { ref , push } from "firebase/database";
+import logo from "../logos/attendify-high-name-white-transparent.png";
 
 
 const RegisterPage = () => {
@@ -77,11 +78,12 @@ const RegisterPage = () => {
       };
     return (
         <div className="Login">
-            <div className="welcome">
-                <h2 className="welcometext">Welcome to Attendify</h2>
+            
+            <div>
+            <img src={logo} alt="logo" width={200} height={50}/>
             </div>
             <div className="studentlogin">
-                <h2 className="welcometext">Student Register</h2>
+                <h3 className="welcometext">STUDENT REGISTER</h3>
             </div>
             <form onSubmit={(e) => {
                 e.preventDefault();
@@ -148,7 +150,6 @@ const RegisterPage = () => {
                     {errors.EMAIL && <p>{errors.EMAIL}</p>}
                 </div>
                 <div className="div">
-                    <h3>Select Year :</h3>
                     <select
                         id="dropdown"
                         className="input"
@@ -156,7 +157,7 @@ const RegisterPage = () => {
                         value={formData.YEAR}
                         onChange={handleChange}
                     >
-                        <option value="">Select Year</option>
+                        <option value="" disabled>Select Year</option>
                         <option value="FY">FY</option>
                         <option value="SY">SY</option>
                         <option value="TY">TY</option>
@@ -164,7 +165,6 @@ const RegisterPage = () => {
                     {errors.YEAR && <p>{errors.YEAR}</p>}
                 </div>
                 <div className="div">
-                    <h3>Select Stream :</h3>
                     <select
                         id="dropdown2"
                         className="input"
@@ -172,7 +172,7 @@ const RegisterPage = () => {
                         value={formData.STREAM} 
                         onChange={handleChange}
                     >
-                        <option value="">Select Stream</option>
+                        <option value="" disabled>Select Stream</option>
                         <option value="IT">IT</option>
                         <option value="IT Hons">IT Hons</option>
                         <option value="CS">CS</option>

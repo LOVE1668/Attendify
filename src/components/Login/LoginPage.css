@@ -1,7 +1,3 @@
-*body{
-
-    background-color: seagreen;
-}
 .Login{
     width: 30%;
     display: flexbox;
@@ -39,7 +35,7 @@
     border-radius: 5px;
 }
 .welcome{
-    background-color: rgb(225, 195, 44);
+    background-color: #4d3a56;
     margin: 5%;
 }
 

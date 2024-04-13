@@ -1,0 +1,103 @@
+/* TimeTable.css */
+
+.timetable-table {
+    width: 96%;
+    border-collapse: separate;
+    border-spacing: 10px;
+    background-color: #4d3a56;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+    border: 2px solid white; /* Add white 2px border */
+}
+
+.timetable-table th,
+.timetable-table td {
+    padding: 12px;
+    text-align: left;
+    border: 2px solid white;
+}
+
+.timetable-table th {
+    background-color: rgb(50, 5, 56);
+}
+
+.subject-dropdown {
+    width: calc(100% - 10px); /* Adjusting for border-spacing */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.select-container {
+    position: relative;
+}
+
+.select-container::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.faculty-info {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+td {
+    width: 3%;
+    height: 3%;
+    background-color: #4d3a56;
+    text-align: center;
+    padding: 12px; /* Adjusting cell padding */
+}
+
+.tt {
+    color: #fff; /* Text color */
+    font-size: 30px; /* Font size */
+    margin-top: 2%; /* Top margin */
+    text-align: center; /* Center alignment */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+}
+
+select.subject-dropdown {
+    margin: 1%;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.faculty-info {
+    text-align: center;
+    font-size: medium;
+}
+
+th {
+    text-align: center;
+}
+
+.class-details {
+    margin-left: 2%;
+    border: 1px solid white;
+    width: 14.35%;
+    text-align: left;
+}
+
+.class {
+    margin-left: 6%;
+    margin: 0px;
+    padding: 2%;
+    border: 1px solid white;
+    background-color: #4d3a56;
+}
+
+.upload-button {
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 20px; /* Add some space between table and button */
+}
+
+.upload-button:hover {
+    background: rgb(103, 8, 113);
+    border: solid 2px white;
+}

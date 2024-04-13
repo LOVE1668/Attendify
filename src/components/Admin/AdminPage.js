@@ -1,30 +1,33 @@
-import logo from "./attendify-high-resolution-logo-black.png";
-import { useNavigate } from "react-router-dom";
+import logo from "../logos/attendify-high-name-white-transparent.png";
+import desgin from "../logos/attendify-favicon-color.png";
 import "./AdminPage.css";
 const AdminPage = () => {
 
-    const navigate = useNavigate();
 
     const toTimeTablePage = () => {
-        navigate("./TimeTablePage");
+        window.location.href = ("http://localhost:3000/timetableform");
     }
     const toCreateStaffCred =() => {
         // navigate("./staffcred");
         window.location.href = "http://localhost:3000/staffcred";
     }
+    const toCreateNotification = () => {
+        window.location.href = ("http://localhost:3000/createnotification");
+    }
 
     return(
         <div>
-            <div>
-                <img src={logo} alt="logo" width={400} height={300}/>
-            </div>
-            <div>
-                <p className="wlc">Welcome Back Admin</p>
+            <div className="img">
+            <img src={desgin} alt="logo" width={90} height={85}/>
+            <img src={logo} alt="logo" width={230} height={70}/>
             </div>
             <div className="btn-container">
+                <div>
+                <p className="wlc">Welcome Back Admin</p>
+            </div>
                 <button className="btn" onClick={toCreateStaffCred}>Create Staff Credentails</button>
                 <button className="btn" >View Attendance</button>
-                <button className="btn" >Send Notifications</button>
+                <button className="btn" onClick={toCreateNotification} >Send Notifications</button>
                 <button className="btn" onClick={toTimeTablePage}>Create time Table</button>
             </div>
         </div>

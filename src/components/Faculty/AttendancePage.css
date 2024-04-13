@@ -1,7 +1,7 @@
 table {
-    width: 100%;
+    width: 96%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin:2%;
   }
   
   thead th {
@@ -9,13 +9,14 @@ table {
     color: white;
     font-weight: bold;
     padding: 10px;
-    text-align: left;
-    border: 2px solid white;
+    text-align: center;
+    
   }
   tbody tr {
     background-color: #ff3333; /* Red color for all data rows */
     color: white; /* White text color for all data rows */
-    border: 2px solid white;
+    font-weight: bolder;
+    border: 3px solid white;
   }
   
   /* tbody tr:nth-child(even) {
@@ -32,15 +33,21 @@ table {
   
   button {
     padding: 8px 16px;
-    background-color: #4caf50;
-    color: white;
+    background-color: white;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bolder;
   }
   
   button:hover {
     background-color: #45a049;
+    color: white;
   }
   
+  .title{
+    color: white;
+    font-size: larger;
+  }
   

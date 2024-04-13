@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./attendify-high-resolution-logo-black.png";
+import logo from "../logos/attendify-high-name-white-transparent.png";
 const StaffPage = () => {
 const toAttendancePage = () => {
     window.location.href = "http://localhost:3000/attendance";
@@ -7,8 +7,8 @@ const toAttendancePage = () => {
   }
   return (
     <div>
-       <div>
-         <img src={logo} alt="logo" width={400} height={300}/>
+       <div className="img">
+       <img src={logo} alt="logo" width={200} height={50}/>
         </div>
         <div className="wlc">
         <p>staff page</p>

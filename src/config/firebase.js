@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database"; // Import Firebase Realtime Database
+  // const { SerialPort } = require('serialport');
+  // const Readline = require('@serialport/parser-readline');
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtc-YtKjymXiE7azGTZYOcXRc5YfRdkPw",

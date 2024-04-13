@@ -1,0 +1,51 @@
+.notification-list {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 5%;
+    padding: 20px;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+    background-color: #4d3a56;
+    border-radius: 5px;
+    border: solid 2px white;
+}
+
+.notification-heading {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: white;
+
+}
+
+.notification-items {
+    list-style: none;
+    padding: auto 0;
+    margin: auto 0;
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notification-item {
+    background-color: #DCF8C6;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5%;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+    width: 70%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-left: 10%;
+}
+
+.timestamp {
+    font-size: 15px;
+    color: #9609b9;
+    text-align: right;
+    margin-bottom: 5px; /* Add margin between timestamp and message */
+    font-weight: bold;
+}
+
+.message {
+    font-size: 16px;
+    color: #000;
+}

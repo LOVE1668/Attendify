@@ -1,9 +1,10 @@
 import "./LoginPage.css";
-import { useState , useEffect } from "react";
-import {db} from "../../config/firebase";
+import { useState, useEffect } from "react";
+import { db } from "../../config/firebase";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import { ref , onValue} from "firebase/database";
+import { ref, onValue } from "firebase/database";
+import logo from "../logos/attendify-high-name-white-transparent.png";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -13,13 +14,12 @@ const LoginPage = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const [registeredUser, setRegisteredUser] = useState([]);
   const [registeredStaff, setRegisteredStaff] = useState([]);
 
   const schema = Yup.object().shape({
-    ID: Yup.number().required().positive().integer().max(99999999999,"Must be exactly 11 digits").min(10000000000, "Must be exactly 11 digits"),
-    EMAIL: Yup.string().email().required().matches(/@somaiya\.edu$/,"Must end with @Somaiya.edu"),
+    ID: Yup.number().required().positive().integer().max(99999999999, "Must be exactly 11 digits").min(10000000000, "Must be exactly 11 digits"),
+    EMAIL: Yup.string().email().required().matches(/@somaiya\.edu$/, "Must end with @Somaiya.edu"),
     PASSWORD: Yup.string().required().min(8).max(12),
   });
 
@@ -31,105 +31,69 @@ const LoginPage = () => {
     });
   };
 
-  const onSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (event) => {
     event.preventDefault();
-    schema.validate(formData, { abortEarly: false })
-      .then(() => {
-        console.log(formData);
-        // Simulate login process - replace this with actual authentication logic
-        // Redirect user to dashboard based on role
-        const userExists = registeredUser.find(user=> user.ID === formData.ID && user.EMAIL === formData.EMAIL && user.PASSWORD === formData.PASSWORD)
-        const staffExists = registeredStaff.find(staffs => staffs.ID === formData.ID && staffs.EMAIL === formData.EMAIL && staffs.PASSWORD === formData.PASSWORD)
-        if(userExists){
-          console.log("User Exists");
-          if(formData.ID === "31010921000" ){
+    try {
+      await schema.validate(formData, { abortEarly: false });
 
-            navigate("/admin")
+      const userExists = registeredUser.find(user => user.ID === formData.ID && user.EMAIL === formData.EMAIL && user.PASSWORD === formData.PASSWORD);
+      const staffExists = registeredStaff.find(staffs => staffs.ID === formData.ID && staffs.EMAIL === formData.EMAIL && staffs.PASSWORD === formData.PASSWORD);
 
-          }
-          else{
-            navigate("/student")
-          }
-          
+      if (userExists) {
+        if (formData.ID === "31010921000") {
+          navigate("/admin");
+        } else {
+          navigate("/student", { state: { name: userExists.name } });
         }
-        else if (staffExists){ 
-          if(formData.ID === "31010920001"){
-            // navigate("/staff") 
-            window.location.href = "http://localhost:3000/staff";  
-          }
-          else{
-            alert("User not found!, Register First!.")
-          // navigate("./Register");
-          }
-                
+      } else if (staffExists) {
+        if (formData.ID === "31010920001") {
+          window.location.href = "http://localhost:3000/staff";
+        } else {
+          alert("User not found! Register First!.");
         }
-        else{
-          // setErrors({message: "User not found!, Register First!."})
-          alert("User not found!, Register First!.")
-          // navigate("./Register");
-        }
-        
-      })
-      .catch((err) => {
-        const validationErrors = {};
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message;
-        });
-        setErrors(validationErrors);
+      } else {
+        alert("User not found! Register First!.");
+      }
+    } catch (error) {
+      const validationErrors = {};
+      error.inner.forEach((validationError) => {
+        validationErrors[validationError.path] = validationError.message;
       });
+      setErrors(validationErrors);
+    }
   };
 
-  const navigate = useNavigate();
-  
   const navigateToRegisterPage = () => {
     navigate("./register");
-  }
+  };
 
   useEffect(() => {
     const usersRef = ref(db, 'users');
     const staffRef = ref(db, 'staff');
+
     onValue(usersRef, (snapshot) => {
       const users = snapshot.val();
-      if(users){
-        const usersArray = Object.keys(users).map(key => ({
-          ID:users[key].ID,
-          EMAIL:users[key].EMAIL,
-          PASSWORD:users[key].PASSWORD,
-        }))
+      if (users) {
+        const usersArray = Object.values(users);
         setRegisteredUser(usersArray);
-        console.log(setRegisteredStaff)
       }
-    })
+    });
+
     onValue(staffRef, (snap) => {
       const staff = snap.val();
-      if(staff){
-        const staffArray = Object.keys(staff).map(key => ({
-          ID:staff[key].ID,
-          EMAIL:staff[key].EMAIL,
-          PASSWORD:staff[key].PASSWORD,
-        }))
+      if (staff) {
+        const staffArray = Object.values(staff);
         setRegisteredStaff(staffArray);
       }
-    })
-    
-
-  //     const userData = snapshot.val();
-  //     if (userData) {
-  //       const usersArray = Object.values(userData);
-  //       setRegisteredUser(usersArray);
-  //       console.log(user)
-  //     }
-  //   });
-  // 
-}
-  , [])
+    });
+  }, []);
 
   return (
     <div className="Login">
       <div>
-        <div className="welcome">
-          <h2 className="welcometext">Welcome to Attendify</h2>
-        </div>
+        <img src={logo} alt="logo" width={200} height={50} />
         <div className="studentlogin">
           <h2 className="welcometext">Student Login</h2>
         </div>
