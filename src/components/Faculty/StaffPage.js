@@ -5,6 +5,18 @@ const toAttendancePage = () => {
     window.location.href = "http://localhost:3000/attendance";
 
   }
+  const toNotificationPage = () => {
+    window.location.href = "http://localhost:3000/viewnotification";
+
+  }
+  const toTimeTablePage = () => {
+    window.location.href = "http://localhost:3000/viewtt";
+
+  }
+  const toViewAttendancePage = () => {
+    window.location.href = "http://localhost:3000/viewattendance";
+
+  }
   return (
     <div>
        <div className="img">
@@ -15,9 +27,9 @@ const toAttendancePage = () => {
         </div>
         <div className="btn-container">
                 <button className="btn" onClick={toAttendancePage}>Take Attendance</button>
-                <button className="btn" >View Attendance</button>
-                <button className="btn" >Notifications</button>
-                <button className="btn" >time Table</button>
+                <button className="btn" onClick={toViewAttendancePage} >View Attendance</button>
+                <button className="btn" onClick={toNotificationPage}>Notifications</button>
+                <button className="btn" onClick={toTimeTablePage}>time Table</button>
         </div>
         
     </div>

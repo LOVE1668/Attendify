@@ -12,13 +12,16 @@ table {
     text-align: center;
     
   }
+  thead {
+    border: 3px solid white;
+  }
   tbody tr {
-    background-color: #ff3333; /* Red color for all data rows */
+    /* background-color: #ff3333; Red color for all data rows */
     color: white; /* White text color for all data rows */
     font-weight: bolder;
     border: 3px solid white;
   }
-  
+
   /* tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
@@ -49,5 +52,29 @@ table {
   .title{
     color: white;
     font-size: larger;
+    margin-top: 1%;
   }
-  
+
+.taginput{
+  width: 25%;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+  margin: 1%;
+  padding: 1%;
+}
+
+.searchbar{
+  width: 25%;
+  padding: 1%;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.upload-button {
+margin: 0.5%;
+
+}

@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { ref, onValue } from "firebase/database";
 import logo from "../logos/attendify-high-name-white-transparent.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -51,10 +53,10 @@ const LoginPage = () => {
         if (formData.ID === "31010920001") {
           window.location.href = "http://localhost:3000/staff";
         } else {
-          alert("User not found! Register First!.");
+          toast.error("User not found! Register First!.", { position: "top-center" });
         }
       } else {
-        alert("User not found! Register First!.");
+        toast.error("User not found! Register First!.", { position: "top-center" });
       }
     } catch (error) {
       const validationErrors = {};
@@ -92,10 +94,11 @@ const LoginPage = () => {
 
   return (
     <div className="Login">
+      <ToastContainer position="top-center" />
       <div>
         <img src={logo} alt="logo" width={200} height={50} />
         <div className="studentlogin">
-          <h2 className="welcometext">Student Login</h2>
+          <h2 className="welcometext">LOGIN</h2>
         </div>
         <form onSubmit={onSubmit}>
           <div>

@@ -123,7 +123,7 @@ const StaffCred = () => {
     <div className="Login">
       <div>
         <div className="studentlogin">
-          <h2 className="welcome">Create Staff</h2>
+          <h2 className="welcome">CREATE FACULTY</h2>
         </div>
         <form onSubmit={onSubmit}>
           <div>

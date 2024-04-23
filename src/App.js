@@ -14,6 +14,7 @@ import ViewTimeTable from './components/Student/ViewTimeTable';
 import CreateNotification from './components/Admin/CreateNotification';
 import ViewNotification from './components/Student/ViewNotification';
 import ViewProfile from './components/Student/ViewProfile';
+import ViewAttendance from './components/Faculty/ViewAttendance';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path ="/createnotification" Component={CreateNotification}/>
           <Route path ="/viewnotification" Component={ViewNotification}/>
           <Route path ="/viewprofile" Component={ViewProfile}/>
+          <Route path ="/viewattendance" Component={ViewAttendance}/>
           </Routes>
       </div>
       </Router>

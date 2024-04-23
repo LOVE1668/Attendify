@@ -1,0 +1,20 @@
+.dpexport{
+    width: 10%;
+    border-radius: 5px;
+    padding: 0.5%;
+    margin: 1%;
+    font-weight: bold;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.report{
+    margin-top: 5%;
+    color: white;
+}
+.export-btn{
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.trdata{
+    background-color: #4d3a56;
+}

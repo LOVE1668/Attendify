@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from 'firebase/auth';
 import { getDatabase } from "firebase/database"; // Import Firebase Realtime Database
   // const { SerialPort } = require('serialport');
   // const Readline = require('@serialport/parser-readline');
@@ -15,7 +16,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
-
+export const auth = getAuth(app);
 // document.getElementById("submit")?.addEventListener("click", window.onload=function(e){
 //   set(ref(db, "user/"+ document.getElementById("seatnum").value),
 //   {

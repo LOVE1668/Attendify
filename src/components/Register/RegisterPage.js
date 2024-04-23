@@ -53,7 +53,7 @@ const RegisterPage = () => {
           await schema.validate(formData, { abortEarly: false });
           await pushDataToFirebase(formData);
           alert("Registered Successfully");
-          navigate("/"); // Redirect to login page or any other page
+          navigate("/"); 
         } catch (error) {
           console.error("Validation Error:", error);
           const validationErrors = {};
@@ -83,7 +83,7 @@ const RegisterPage = () => {
             <img src={logo} alt="logo" width={200} height={50}/>
             </div>
             <div className="studentlogin">
-                <h3 className="welcometext">STUDENT REGISTER</h3>
+                <h3 className="welcometext">REGISTER</h3>
             </div>
             <form onSubmit={(e) => {
                 e.preventDefault();

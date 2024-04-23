@@ -1,43 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../../config/firebase";
-import { ref, get, child } from "firebase/database";
-import "./ViewProfile.css";
+import React, { useState, useEffect } from 'react';
+import { auth, db } from '../../config/firebase'; // Assuming db is your Firebase database reference
 
-const ViewProfile = ({ userId }) => {
-    const [userDetails, setUserDetails] = useState(null);
+const ViewProfile = () => {
+  const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        const fetchUserProfile = async () => {
-            try {
-                const userRef = ref(db, `users/${userId}`);
-                const snapshot = await get(child(userRef, userId));
-                if (snapshot.exists()) {
-                    setUserDetails(snapshot.val());
-                } else {
-                    console.log("No data available for user with ID:", userId);
-                }
-            } catch (error) {
-                console.error("Error fetching user profile:", error);
-            }
-        };
+  useEffect(() => {
+    // Check if there's a logged-in user
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, fetch user data from Firebase
+        const userId = user.uid;
+        const userRef = db.ref(`users/${userId}`);
 
-        fetchUserProfile();
-    }, [userId]);
+        userRef.once('value', (snapshot) => {
+          const data = snapshot.val();
+          setUserData(data);
+        });
+      } else {
+        // No user is signed in, handle this case if needed
+      }
+    });
 
-    return (
+    // Unsubscribe from auth state changes when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <div>
+      <h2>View Profile</h2>
+      {userData && (
         <div>
-            <h2>User Profile</h2>
-            {userDetails && (
-                <div>
-                    <p>Name: {userDetails.NAME}</p>
-                    <p>ID: {userDetails.ID}</p>
-                    <p>Email: {userDetails.EMAIL}</p>
-                    <p>Year: {userDetails.YEAR}</p>
-                    <p>Stream: {userDetails.STREAM}</p>
-                </div>
-            )}
+          <p>Name: {userData.NAME}</p>
+          <p>Last Name: {userData.LASTNAME}</p>
+          <p>Middle Name: {userData.MIDDLENAME}</p>
+          <p>ID: {userData.ID}</p>
+          <p>Email: {userData.EMAIL}</p>
+          <p>Year: {userData.YEAR}</p>
+          <p>Stream: {userData.STREAM}</p>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default ViewProfile;
